@@ -1,50 +1,18 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {View, Text, StyleSheet, Button} from 'react-native';
+import {useSelector, useDispatch} from 'react-redux';
+
+import {getUsers} from './store/actions';
 
 const ProgrammingAssignment = (props) => {
-  const [users, getUsers] = useState([
-    {
-      address: {
-        city: '',
-        geo: {lat: '', lng: ''},
-        street: '',
-        suite: '',
-        zipcode: '',
-      },
-      company: {
-        bs: '',
-        catchPhrase: '',
-        name: '',
-      },
-      email: '',
-      id: -1,
-      name: '',
-      phone: '',
-      username: '',
-      website: '',
-    },
-  ]);
-
-  const getUsersFromApiHandler = async () => {
-    try {
-      let response = await fetch('https://jsonplaceholder.typicode.com/users');
-      let json = await response.json();
-      getUsers(json);
-    } catch (error) {
-      console.error(error);
-    }
-  };
+  const data = useSelector((state) => state.users);
+  const dispatch = useDispatch;
 
   return (
     <View style={styles.container}>
       <Text> Hello and Welcome To my React Native App </Text>
-      <Text>{users[0].name}</Text>
-      <Button
-        title="Click Me"
-        onPress={() => {
-          getUsersFromApiHandler();
-        }}
-      />
+      <Text>{data.users}</Text>
+      <Button title="Click Me" onPress={() => dispatch(getUsers)} />
     </View>
   );
 };

@@ -1,8 +1,15 @@
 import React from 'react';
-import ProgrammingAssignment from './src/index';
+import { Provider } from 'react-redux';
 
-const App = () => {
-  return <ProgrammingAssignment />
+import ProgrammingAssignment from './src/index';
+import { store } from './src/store/store'
+
+const App = (props) => {
+  return (
+    <Provider store={store}>
+      <ProgrammingAssignment />
+    </Provider>
+  )
 }
 
 export default App;

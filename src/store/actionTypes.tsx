@@ -1,1 +1,1 @@
-export {}
+export const GETUSERS = 'GETUSERS';
