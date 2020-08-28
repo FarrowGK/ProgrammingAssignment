@@ -1,8 +1,15 @@
-import React from 'react';
+import React, {Component} from 'react';
+import { Provider } from 'react-redux';
+
 import ProgrammingAssignment from './src/index';
+import Store from './src/store/Store';
 
-const App = () => {
-  return <ProgrammingAssignment />
+export default class App extends Component {
+  render() {
+    return (
+      <Provider store={Store}>
+        <ProgrammingAssignment />
+      </Provider>
+    )
+  }
 }
-
-export default App;

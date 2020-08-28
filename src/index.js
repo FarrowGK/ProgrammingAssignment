@@ -1,60 +1,51 @@
-import React, {useState} from 'react';
-import {View, Text, StyleSheet, Button} from 'react-native';
+import React, {Component} from 'react';
+import {View, Text, FlatList} from 'react-native';
+import {connect} from 'react-redux';
+import apiCall from './store/ActionCreator';
 
-const ProgrammingAssignment = (props) => {
-  const [users, getUsers] = useState([
-    {
-      address: {
-        city: '',
-        geo: {lat: '', lng: ''},
-        street: '',
-        suite: '',
-        zipcode: '',
-      },
-      company: {
-        bs: '',
-        catchPhrase: '',
-        name: '',
-      },
-      email: '',
-      id: -1,
-      name: '',
-      phone: '',
-      username: '',
-      website: '',
-    },
-  ]);
+class ProgrammingAssignment extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      data: '',
+    };
+  }
+  componentDidMount() {
+    this.props
+      .apiCall('https://jsonplaceholder.typicode.com/users')
+      .then(() => {
+        const data = this.props.data;
+        this.setState({
+          data,
+        });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
+  render() {
+    return (
+      <View>
+        <FlatList
+          data={this.props.data}
+          renderItem={({item}) => <Text>{item.name}</Text>}
+          keyExtractor={(item, index) => index.toString()}
+        />
+      </View>
+    );
+  }
+}
 
-  const getUsersFromApiHandler = async () => {
-    try {
-      let response = await fetch('https://jsonplaceholder.typicode.com/users');
-      let json = await response.json();
-      getUsers(json);
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
-  return (
-    <View style={styles.container}>
-      <Text> Hello and Welcome To my React Native App </Text>
-      <Text>{users[0].name}</Text>
-      <Button
-        title="Click Me"
-        onPress={() => {
-          getUsersFromApiHandler();
-        }}
-      />
-    </View>
-  );
-};
-
-export default ProgrammingAssignment;
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
+const mapDispatchToProps = (dispatch) => ({
+  apiCall: (url) => dispatch(apiCall(url)),
 });
+
+const mapStateToProps = (state) => ({
+  data: state.apiReducer.data,
+  error: state.apiReducer.error,
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(ProgrammingAssignment);
