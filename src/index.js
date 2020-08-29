@@ -1,6 +1,9 @@
 import React, {Component} from 'react';
-import {View, Text, FlatList} from 'react-native';
+import {View, FlatList, TouchableOpacity} from 'react-native';
 import {connect} from 'react-redux';
+import {ListItem} from 'react-native-elements';
+import Icon from 'react-native-vector-icons/Ionicons';
+
 import apiCall from './store/ActionCreator';
 
 class ProgrammingAssignment extends Component {
@@ -11,6 +14,7 @@ class ProgrammingAssignment extends Component {
     };
   }
   componentDidMount() {
+    Icon.loadFont();
     this.props
       .apiCall('https://jsonplaceholder.typicode.com/users')
       .then(() => {
@@ -23,13 +27,27 @@ class ProgrammingAssignment extends Component {
         console.log(error);
       });
   }
+
+  keyExtractor = (item, index) => index.toString();
+
+  renderItem = ({item}) => (
+    <TouchableOpacity>
+      <ListItem bottomDivider>
+        <ListItem.Content>
+          <ListItem.Title>{item.name}</ListItem.Title>
+          <ListItem.Subtitle>{item.email}</ListItem.Subtitle>
+        </ListItem.Content>
+        <ListItem.Chevron />
+      </ListItem>
+    </TouchableOpacity>
+  );
   render() {
     return (
       <View>
         <FlatList
+          keyExtractor={this.keyExtractor}
           data={this.props.data}
-          renderItem={({item}) => <Text>{item.name}</Text>}
-          keyExtractor={(item, index) => index.toString()}
+          renderItem={this.renderItem}
         />
       </View>
     );
