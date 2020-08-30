@@ -28,10 +28,31 @@ class ProgrammingAssignment extends Component {
       });
   }
 
+  // pressHandler = () => {
+  //   this.props.navigation.push('UserDetails');
+  // };
+
   keyExtractor = (item, index) => index.toString();
 
   renderItem = ({item}) => (
-    <TouchableOpacity>
+    <TouchableOpacity
+      onPress={() =>
+        this.props.navigation.push('UserDetails', {
+          name: item.name,
+          username: item.username,
+          email: item.email,
+          addressStreet: item.address.street,
+          addressSuite: item.address.suite,
+          addressCity: item.address.zipcode,
+          addressGeoLat: item.address.geo.lat,
+          addressGeoLng: item.address.geo.lng,
+          phone: item.phone,
+          website: item.website,
+          companyName: item.company.name,
+          catchPhrase: item.company.catchPhrase,
+          bs: item.company.bs,
+        })
+      }>
       <ListItem bottomDivider>
         <ListItem.Content>
           <ListItem.Title>{item.name}</ListItem.Title>
@@ -41,6 +62,7 @@ class ProgrammingAssignment extends Component {
       </ListItem>
     </TouchableOpacity>
   );
+
   render() {
     return (
       <View>

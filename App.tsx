@@ -1,14 +1,14 @@
 import React, {Component} from 'react';
 import { Provider } from 'react-redux';
 
-import ProgrammingAssignment from './src/index';
 import Store from './src/store/Store';
+import Navigator from './src/routes/RootStack';
 
 export default class App extends Component {
   render() {
     return (
       <Provider store={Store}>
-        <ProgrammingAssignment />
+        <Navigator />
       </Provider>
     )
   }
