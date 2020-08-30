@@ -28,10 +28,6 @@ class ProgrammingAssignment extends Component {
       });
   }
 
-  // pressHandler = () => {
-  //   this.props.navigation.push('UserDetails');
-  // };
-
   keyExtractor = (item, index) => index.toString();
 
   renderItem = ({item}) => (

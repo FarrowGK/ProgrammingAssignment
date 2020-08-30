@@ -6,10 +6,16 @@ import UserDetails from '../screens/UserDetails';
 
 const screens = {
   Root: {
-    screen: ProgrammingAssignment
+    screen: ProgrammingAssignment,
+    navigationOptions: {
+      headerTitle: 'List of Avaible Users'
+    }
   },
   UserDetails: {
-    screen: UserDetails
+    screen: UserDetails,
+    navigationOptions: {
+      headerTitle: 'User Details'
+    }
   }
 }
 
