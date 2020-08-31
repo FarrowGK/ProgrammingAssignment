@@ -4,7 +4,7 @@ React Native Programming Assignment
 Enviorments
 Android Studio: 4.0.1
 Xcode: 12
-React Native0.63
+React Native 0.63
 Yarn Package Manager
 
 Testing Devices (Emulators)
