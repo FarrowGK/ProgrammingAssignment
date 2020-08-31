@@ -8,13 +8,19 @@ const screens = {
   Root: {
     screen: ProgrammingAssignment,
     navigationOptions: {
-      headerTitle: 'List of Avaible Users'
+      headerTitle: 'List of Avaible Users',
+      headerStyle: {
+            backgroundColor: '#195e83',
+          },
     }
   },
   UserDetails: {
     screen: UserDetails,
     navigationOptions: {
-      headerTitle: 'User Details'
+      headerTitle: 'User Details',
+      headerStyle: {
+            backgroundColor: '#195e83',
+          },
     }
   }
 }
