@@ -25,5 +25,8 @@ Project Setup and Run Instructions
 11)Project SDK = Android API 28 Platform
 12)yarn ios && yarn android
 13)Congratulations the project is running!
+14)Issues/Bugs
+  A)Opening phone menu on ios produces bug where it is unable to open the phone menu.
+    This is a known issue only on simulators as App works correctly on a real physical device
 
 
